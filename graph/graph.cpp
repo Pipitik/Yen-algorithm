@@ -1,7 +1,7 @@
 #include "graph.h"
 
 /// <summary>
-/// Поиск вершины с минимальным весом в массиве
+/// РџРѕРёСЃРє РІРµСЂС€РёРЅС‹ СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј РІРµСЃРѕРј РІ РјР°СЃСЃРёРІРµ
 /// </summary>
 /// <param name="shortPath"></param>
 /// <param name="visited"></param>
@@ -22,7 +22,7 @@ int minDistance(const std::vector<double>& shortPath, const std::vector<bool>& v
 }
 
 /// <summary>
-/// Алгортм Дейкстры для вершин с неотрицательными весами
+/// РђР»РіРѕСЂС‚Рј Р”РµР№РєСЃС‚СЂС‹ РґР»СЏ РІРµСЂС€РёРЅ СЃ РЅРµРѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹РјРё РІРµСЃР°РјРё
 /// </summary>
 /// <param name="graph"></param>
 /// <param name="src"></param>
@@ -49,7 +49,7 @@ Pair dijkstra(const Graph& graph, const int src, const int sink)
         }
     }
 
-    // Поиск пути от источника к заданной вершине.
+    // РџРѕРёСЃРє РїСѓС‚Рё РѕС‚ РёСЃС‚РѕС‡РЅРёРєР° Рє Р·Р°РґР°РЅРЅРѕР№ РІРµСЂС€РёРЅРµ.
     std::vector<int> path;
     for (int node = sink; node != src;) {
         path.push_back(node);
@@ -65,7 +65,7 @@ Pair dijkstra(const Graph& graph, const int src, const int sink)
 }
 
 /// <summary>
-/// Удалить ребро из графа
+/// РЈРґР°Р»РёС‚СЊ СЂРµР±СЂРѕ РёР· РіСЂР°С„Р°
 /// </summary>
 /// <param name="graph"></param>
 /// <param name="node1"></param>
@@ -81,7 +81,7 @@ void removeEdge(Graph& graph, Mode graphType, const int node1, const int node2)
 }
 
 /// <summary>
-/// Удалить вершину из графа
+/// РЈРґР°Р»РёС‚СЊ РІРµСЂС€РёРЅСѓ РёР· РіСЂР°С„Р°
 /// </summary>
 /// <param name="graph"></param>
 /// <param name="node"></param>
@@ -93,7 +93,7 @@ void removeNode(Graph& graph, const int node)
 }
 
 /// <summary>
-/// Найти длину пути для вершин из массива
+/// РќР°Р№С‚Рё РґР»РёРЅСѓ РїСѓС‚Рё РґР»СЏ РІРµСЂС€РёРЅ РёР· РјР°СЃСЃРёРІР°
 /// </summary>
 /// <param name="graph"></param>
 /// <param name="begin"></param>
@@ -115,7 +115,7 @@ Pair lengthPath(const Graph& graph, const iteratorVectInt begin, const iteratorV
 }
 
 /// <summary>
-/// Проверить наличие пути в массиве
+/// РџСЂРѕРІРµСЂРёС‚СЊ РЅР°Р»РёС‡РёРµ РїСѓС‚Рё РІ РјР°СЃСЃРёРІРµ
 /// </summary>
 /// <param name="what"></param>
 /// <param name="where"></param>
@@ -132,7 +132,7 @@ bool presencePath(const Map& what, const MultiMap& where)
 }
 
 /// <summary>
-/// Алгоритм Йена
+/// РђР»РіРѕСЂРёС‚Рј Р™РµРЅР°
 /// </summary>
 /// <param name="graph"></param>
 /// <param name="src"></param>
@@ -143,20 +143,20 @@ MultiMap yen(const Graph& graph, Mode graphType, const int src, const int sink, 
 {
     Graph tempGraph;
 
-    MultiMap paths;             // Массив найденных путей.
+    MultiMap paths;             // РњР°СЃСЃРёРІ РЅР°Р№РґРµРЅРЅС‹С… РїСѓС‚РµР№.
     paths.insert(dijkstra(graph, src, sink));
     MultiMap::iterator itPaths = paths.begin();
-    MultiMap candidates;        // Массив кандидатов.
+    MultiMap candidates;        // РњР°СЃСЃРёРІ РєР°РЅРґРёРґР°С‚РѕРІ.
 
-    Map rootPath;               // Корневой путь - начальная часть предыдущего пути.
+    Map rootPath;               // РљРѕСЂРЅРµРІРѕР№ РїСѓС‚СЊ - РЅР°С‡Р°Р»СЊРЅР°СЏ С‡Р°СЃС‚СЊ РїСЂРµРґС‹РґСѓС‰РµРіРѕ РїСѓС‚Рё.
     Map::iterator itRootPath;
-    Map spurPath;               // Путь ветвления.
+    Map spurPath;               // РџСѓС‚СЊ РІРµС‚РІР»РµРЅРёСЏ.
     Map::iterator itSpurPath;
-    Map totalPath;              // Новый путь(totalPath) = rootPath + spurPath.
+    Map totalPath;              // РќРѕРІС‹Р№ РїСѓС‚СЊ(totalPath) = rootPath + spurPath.
 
-    int spurNode;               // Вершина ветвления.
+    int spurNode;               // Р’РµСЂС€РёРЅР° РІРµС‚РІР»РµРЅРёСЏ.
 
-    // Вспомогательные переменные.
+    // Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ.
     int length;
     std::vector<int> nodes;
     for (int k = 1; k < K; ++k, ++itPaths) {
@@ -169,7 +169,7 @@ MultiMap yen(const Graph& graph, Mode graphType, const int src, const int sink, 
             rootPath.insert(lengthPath(tempGraph, itPaths->second.begin(), itPaths->second.begin() + i + 1));
             itRootPath = rootPath.begin();
 
-            // Удаление ребер из графа
+            // РЈРґР°Р»РµРЅРёРµ СЂРµР±РµСЂ РёР· РіСЂР°С„Р°.
             for (auto& p : paths) {
                 if (i >= p.second.size()) continue;
                 std::vector<int> path(p.second.begin(), p.second.begin() + i + 1);
@@ -178,7 +178,7 @@ MultiMap yen(const Graph& graph, Mode graphType, const int src, const int sink, 
                 }
             }
 
-            // Удаление всех вершин, содержащиеся в корневом пути кроме вершины ветвления
+            // РЈРґР°Р»РµРЅРёРµ РІСЃРµС… РІРµСЂС€РёРЅ, СЃРѕРґРµСЂР¶Р°С‰РёРµСЃСЏ РІ РєРѕСЂРЅРµРІРѕРј РїСѓС‚Рё РєСЂРѕРјРµ РІРµСЂС€РёРЅС‹ РІРµС‚РІР»РµРЅРёСЏ.
             for (auto rootPathNode : itRootPath->second) {
                 if (rootPathNode != spurNode) {
                     removeNode(tempGraph, rootPathNode);
@@ -188,12 +188,12 @@ MultiMap yen(const Graph& graph, Mode graphType, const int src, const int sink, 
             spurPath.clear();
             spurPath.insert(dijkstra(tempGraph, spurNode, sink));
             itSpurPath = spurPath.begin();
-            // Если пути нет (равен бесконечноти), то переходим на следующую итерацию.
+            // Р•СЃР»Рё РїСѓС‚Рё РЅРµС‚ (СЂР°РІРµРЅ Р±РµСЃРєРѕРЅРµС‡РЅРѕС‚Рё), С‚Рѕ РїРµСЂРµС…РѕРґРёРј РЅР° СЃР»РµРґСѓСЋС‰СѓСЋ РёС‚РµСЂР°С†РёСЋ.
             if (itSpurPath->second.size() == 1) continue;
 
-            // Суммарный вес корневого пути и пути ветвления
+            // РЎСѓРјРјР°СЂРЅС‹Р№ РІРµСЃ РєРѕСЂРЅРµРІРѕРіРѕ РїСѓС‚Рё Рё РїСѓС‚Рё РІРµС‚РІР»РµРЅРёСЏ.
             int totalLength = itRootPath->first + itSpurPath->first;
-            //Объединения корневого пути и пути ветвления
+            // РћР±СЉРµРґРёРЅРµРЅРёСЏ РєРѕСЂРЅРµРІРѕРіРѕ РїСѓС‚Рё Рё РїСѓС‚Рё РІРµС‚РІР»РµРЅРёСЏ.
             itRootPath->second.insert(itRootPath->second.end(), itSpurPath->second.begin() + 1, itSpurPath->second.end());
             totalPath.clear();
             totalPath.emplace(totalLength, itRootPath->second);
@@ -214,7 +214,7 @@ MultiMap yen(const Graph& graph, Mode graphType, const int src, const int sink, 
 }
 
 /// <summary>
-/// Отобразить граф
+/// РћС‚РѕР±СЂР°Р·РёС‚СЊ РіСЂР°С„
 /// </summary>
 /// <param name="graph"></param>
 void showGraph(const Graph& graph)
@@ -228,7 +228,7 @@ void showGraph(const Graph& graph)
 }
 
 /// <summary>
-/// Отобразить найденные пути
+/// РћС‚РѕР±СЂР°Р·РёС‚СЊ РЅР°Р№РґРµРЅРЅС‹Рµ РїСѓС‚Рё
 /// </summary>
 /// <param name="paths"></param>
 void showPaths(const MultiMap& paths)
